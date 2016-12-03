@@ -25,7 +25,7 @@ class Shell
   
  public:
   Shell(){};			//default constructor
-  
+  vector<char*>a;
   bool getStatus()	//get current status of shell
   { return status; }
   
@@ -67,10 +67,17 @@ class Shell
 	  
 	  if(argSize > 0)
 	    {
-	      if(cn.getCommand().getArgListStr() == "~")
-		{ chdir(getenv("HOME")); }
+	      if(cn.getCommand().getArgListStr() == "-")
+		{ if(this->a.empty()) chdir(getenv("HOME")); 
+		   else{
+		   chdir("/home/csmajs/rlong008/rshell");
+	           this->a.pop_back();
+		   }
+		}
 	      else
-		{ chdir(cn.getCommand().getArgList_c_str()); }
+		{     this->a.push_back(cn.getCommand().getArgList_c_str());
+		      cout<<this->a.back()<<" ";
+		      chdir(cn.getCommand().getArgList_c_str()); }
 	      //cout << "error:" << errno << endl;
 	    }
 	  else
