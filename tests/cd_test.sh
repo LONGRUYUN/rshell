@@ -8,3 +8,4 @@ echo
 echo -e "cd -\nexit\n" | bin/rshell	#should be syntax error
 echo
 echo -e "cd\nexit\n" | bin/rshell
+echo
